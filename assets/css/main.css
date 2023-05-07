@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Amarante&family=Aref+Ruqaa:wght@700&family=Bakbak+One&family=Baloo+Chettan+2:wght@500&family=Metamorphous&family=Patrick+Hand&display=swap");
+
+html,
+body,
+[class*="css"] {
+  font-family: "Acme", sans-serif;
+  /* font-size: 18px;
+    font-weight: 500;
+    color: #091747; */
+}

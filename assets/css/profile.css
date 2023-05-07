@@ -1,0 +1,119 @@
+* {
+  font-family: "Acme", sans-serif;
+}
+
+body {
+  background-color: rgb(14, 17, 23);
+  font-size: 16px;
+  /* height: 100vh; set the height of the body to 100% of the viewport height */
+}
+
+.container_1 {
+  margin: 50px;
+  /* border: 5px green solid; */
+  /* background-color: rgb(132, 230, 156); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#container_2 {
+  /* background-color: rgb(102, 102, 212); */
+  /* border: 5px purple solid; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* height: 20%; */
+}
+
+h1 {
+  font-size: 60px;
+  color: #fff;
+}
+
+.container_3 {
+  /* border: 5px red solid; */
+  /* background-color: yellow; */
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* height: 50%; */
+}
+
+#container_4 {
+  /* border: 5px rgb(0, 134, 56) solid; */
+  /* background-color: orange; */
+  width: 80%;
+}
+
+form {
+  /* border: 5px red solid; */
+  /* background-color: pink; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  width: 100%;
+  max-width: 800px;
+  /* margin-left: 180px; */
+}
+
+.field_container {
+  /* border: 2px solid black; */
+  width: 100%;
+}
+
+#btn_container {
+  /* border: 2px solid black; */
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  margin: 20px 0;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+#btnSaveChanges {
+  background-color: #16a085;
+  width: 50%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+#btnSaveChanges:hover {
+  background-color: #0c6453;
+}

@@ -1,0 +1,57 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile Page</title>
+  </head>
+  <body>
+    <h1>My Profile</h1>
+    <form>
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" /><br />
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" /><br />
+      <label for="address">Address:</label><br />
+      <input type="text" id="address" name="address" /><br />
+      <label for="contact">Contact:</label><br />
+      <input type="tel" id="contact" name="contact" /><br />
+      <label for="profile-pic">Profile Picture:</label><br />
+      <input type="file" id="profile-pic" name="profile-pic" /><br /><br />
+      <input type="submit" value="Save Changes" />
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="assets/css/profile.css" />
+  </head>
+  <body>
+    <h1>My Profile</h1>
+    <form>
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" /><br />
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" /><br />
+      <label for="address">Address:</label><br />
+      <input type="text" id="address" name="address" /><br />
+      <label for="contact">Contact:</label><br />
+      <input type="tel" id="contact" name="contact" /><br />
+      <label for="profile-pic">Profile Picture:</label><br />
+      <input
+        type="file"
+        id="profile-pic"
+        name="profile-pic"
+        onchange="loadImage(event)"
+      /><br /><br />
+      <img
+        id="preview-image"
+        src="#"
+        alt="Preview Image"
+        style="display: none; width: 200px; height: 200px"
+      /><br />
+      <input type="submit" value="Save Changes" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile</title>
+    <link rel="stylesheet" href="assets/css/profile.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Amarante&family=Aref+Ruqaa:wght@700&family=Bakbak+One&family=Baloo+Chettan+2:wght@500&family=Metamorphous&family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <script src="assets/js/profile.js"></script>
+  </head>
+  <body>
+    <div class="container_1">
+      <div id="container_2">
+        <h1>My Profile</h1>
+      </div>
+      <div class="container_3">
+        <form id="profile-form">
+          <div id="container_4">
+            <div class="field_container">
+              <label for="name">Name :</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <br /><br />
+            <div class="field_container">
+              <label for="email">Email :</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <br /><br />
+
+            <div class="field_container">
+              <label for="address">Address :</label>
+              <input type="text" id="address" name="address" required />
+            </div>
+            <br /><br />
+
+            <div class="field_container">
+              <label for="contact">Contact :</label>
+              <input type="tel" id="contact" name="contact" required />
+            </div>
+            <br /><br />
+
+            <!-- <div class="field_container">
+              <label for="profile-pic">Profile Picture :</label>
+              <input
+                type="file"
+                id="profile-pic"
+                name="profile-pic"
+                onchange="loadImage(event)"
+              /><br /><br />
+              <img
+                id="preview-image"
+                src="#"
+                alt="Preview Image"
+                style="display: none; width: 200px; height: 200px"
+              />
+            </div> -->
+            <!-- <br /> -->
+            <div id="btn_container">
+              <input id="btnSaveChanges" type="button" value="Save Changes" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

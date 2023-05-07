@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login and Registration Form</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Amarante&family=Aref+Ruqaa:wght@700&family=Bakbak+One&family=Baloo+Chettan+2:wght@500&family=Metamorphous&family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNSbN/6"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $("#register-form").hide(); // hide the registration form by default
+        $("#login-btn").click(function () {
+          $("#register-form").hide();
+          $("#login-form").show();
+          $("#login-btn").addClass("active");
+          $("#register-btn").removeClass("active");
+        });
+        $("#register-btn").click(function () {
+          $("#login-form").hide();
+          $("#register-form").show();
+          $("#register-btn").addClass("active");
+          $("#login-btn").removeClass("active");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center mb-5">
+          <!-- <h1>Welcome back to your ultimate movie destination</h1> -->
+          <h1 id="title_1">Sign in to discover your next favorite movie...</h1>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li id="login_tab" class="nav-item">
+                  <a class="nav-link active" id="login-btn" href="#">SignIn</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="register-btn" href="#">SignUp</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <form id="login-form">
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <!-- <button
+                  id="btn_login"
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                >
+                  SignIn
+                </button> -->
+                <button
+                  id="btn_login"
+                  type="button"
+                  class="btn btn-primary btn-block"
+                  onclick="redirectToStreamlit()"
+                >
+                  SignIn
+                </button>
+              </form>
+              <form id="register-form">
+                <div class="form-group">
+                  <label for="name">Customer Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Enter name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email">Customer Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="contact">Customer Contact</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="contact"
+                    name="contact"
+                    placeholder="Enter contact number"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="address">Customer Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    name="address"
+                    placeholder="Enter address"
+                    required
+                  />
+                </div>
+                <button
+                  id="btn_register"
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                >
+                  SignUp
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function redirectToStreamlit() {
+        window.location.href = "http://localhost:8501/";
+      }
+    </script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
