@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width = device-width initial-scale = 1.0,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Amarante&family=Aref+Ruqaa:wght@700&family=Bakbak+One&family=Baloo+Chettan+2:wght@500&family=Metamorphous&family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/movies.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">MovieHive</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile<i class="fas fa-user"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row mt-4" style="width: 100%; margin: auto">
+      <div class="col-12 text-center">
+        <h1 id="main_title">Discover your next favorite movie...!</h1>
+      </div>
+    </div>
+    <div
+      class="row mt-4"
+      style="width: 100%; margin: auto"
+      id="cmb_container_1"
+    >
+      <div class="col-12" id="cmb_container_2">
+        <div class="dropdown" style="width: 60%" id="cmb_container_3">
+          <!-- <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="cmb_movies"
+          >
+            Dropdown Button
+          </button> -->
+          <!-- <div
+            class="dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            id="cmb_movie_items"
+          >
+            <a class="dropdown-item" href="#">Action 1</a>
+            <a class="dropdown-item" href="#">Action 2</a>
+            <a class="dropdown-item" href="#">Action 3</a>
+          </div> -->
+          <h3 id="sub_title">
+            Get your personalized movie recommendations in seconds...
+          </h3>
+          <select class="form-select" aria-label="Movie items" id="cmb_movies">
+            <option selected disabled>Choose a movie</option>
+            <!-- <option selected value="action1">Action 1</option>
+            <option value="action2">Action 2</option>
+            <option value="action3">Action 3</option> -->
+          </select>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row mt-4"
+      style="width: 100%; margin: auto"
+      id="btn_container_1"
+    >
+      <div class="text-center" id="btn_container_2">
+        <button id="btn_recommend" type="button">Recommend</button>
+      </div>
+    </div>
+
+    <div class="container mt-4" id="card_main_container"></div>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/movies.js"></script>
+  </body>
+</html>
