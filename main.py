@@ -6,6 +6,9 @@ import streamlit.components.v1 as components
 from streamlit.components.v1 import html
 import webbrowser
 
+
+
+
 with open( "assets/css/main.css" ) as css:
     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
 
@@ -37,17 +40,35 @@ iframe_css = """
 """
 st.markdown(iframe_css, unsafe_allow_html=True)
 
-login_page_url = "http://127.0.0.1:5500/"
+login_page_url = "http://127.0.0.1:5000/"
 main_app_url = "http://localhost:8501/"
+
+
+# show_login = True
+
+# # Set the default value of the radio button
+# if show_login:
+#     default_selection = 'Login'
+# else:
+#     default_selection = 'Home'
+
+# # Create the radio button widget
+# sidebar_selection = st.sidebar.radio("Navigate to", ('Home', 'Profile','Login'), index=2 if default_selection == 'Login' else 0)
 
 # Add buttons to the sidebar
 sidebar_selection = st.sidebar.radio("Navigate to", ('Home', 'Profile'))
+
+# Add a Logout button to the sidebar and redirect to login page
+if st.sidebar.button('Logout'):
+    # st.markdown('<a target="_self" href="http://127.0.0.1:5500/">sas</a>', unsafe_allow_html=True)
+    webbrowser.open(login_page_url, new=2)
 
 # Handle button clicks
 if sidebar_selection == 'Profile':
     # Redirect to an HTML page when the user clicks the button
     # st.markdown(load_html_file('profile_2.html'), unsafe_allow_html=True)
-    webbrowser.open('http://127.0.0.1:5500/profile.html')
+     webbrowser.open('http://127.0.0.1:5000/profile.html')
+
 
     # HtmlFile = open("profile.html", 'r', encoding='utf-8')
     # source_code = HtmlFile.read() 
@@ -59,11 +80,6 @@ if sidebar_selection == 'Profile':
      # Combine the HTML and CSS strings, and render them with the components.html function
     # html_with_css_js = f'{profile_css}\n{html_string}\n{profile_js}'
     # st.markdown(html_with_css_js, unsafe_allow_html=True)
-
-# Add a Logout button to the sidebar and redirect to login page
-if st.sidebar.button('Logout'):
-    # st.markdown('<a target="_self" href="http://127.0.0.1:5500/">sas</a>', unsafe_allow_html=True)
-    webbrowser.open(login_page_url, new=2)
 
 elif sidebar_selection == 'Home':
     # Redirect to a Streamlit page when the user clicks the button
@@ -224,5 +240,9 @@ elif sidebar_selection == 'Home':
         with col9:
             st.image(posters[8])
             st.caption(titles[8])
+
+
+# else:
+#     webbrowser.open(login_page_url, new=2)
 
 

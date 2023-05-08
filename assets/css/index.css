@@ -1,0 +1,32 @@
+* {
+  font-family: "Acme", sans-serif;
+}
+body {
+  /* background-color: #2c3e50; */
+  background-color: rgb(14, 17, 23);
+}
+.card {
+  background-color: #f0f0f0;
+}
+.nav-tabs .nav-link.active {
+  background-color: #7f8c8d;
+  color: #fff;
+}
+.nav-item:not(.active) {
+  background-color: #34495e;
+}
+.nav-item:not(.active) > a {
+  /* background-color: #34495e; */
+  color: #fff;
+}
+#title_1 {
+  color: #fff;
+  font-size: 70px;
+  margin-top: 80px;
+}
+#btn_login {
+  background-color: #34495e;
+}
+#btn_register {
+  background-color: #34495e;
+}
