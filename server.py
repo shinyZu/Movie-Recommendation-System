@@ -33,18 +33,20 @@ similarity = pickle.load(open('pickle/similarity.pkl', 'rb'))
 
 cmb_movie_list = movies['title'].values
 
+poster_url = ''
 def get_movie_poster(movie_id):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c&language=en-US'.format(movie_id))
     data = response.json()
     # print(data)
     # st.text(data)
     poster_url = poster_path_base_url + data['poster_path']
+    # print(poster_url)
     # st.text(poster_url)
     return poster_url
 
 def recommend_movies(movie_selected):
     movie_index = movies[movies['title'] == movie_selected].index[0]
-    # st.text(movie_index)
+    # print(movie_index)
     distances = similarity[movie_index]
     # st.text(distances)
     movies_list = sorted(list(enumerate(distances)), reverse = True, key=lambda x:x[1])[1:21]
@@ -78,6 +80,11 @@ def index():
     mycursor.execute("CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), address VARCHAR(255), contact VARCHAR(10))")
     return render_template('server_index.html')
 
+@app.route('/movies/home', methods=["GET"])
+@cross_origin()
+def getLoginDetails():
+    return render_template('movies.html')
+
 @app.route('/movies', methods=["GET"])
 @cross_origin()
 def getMovieTitles(): 
@@ -97,6 +104,8 @@ def getRecommendedMovies(movie_selected):
     titles,posters = recommend_movies(movie_selected)
     return jsonify({'status': 200, 'movieList': titles, 'posterList': posters })
     # return recommended_movies_list, recommended_movies_poster_list
+
+
 
 
 @app.route('/save', methods=["POST"])

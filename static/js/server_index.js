@@ -53,3 +53,39 @@ $("#btn_register").click(function (e) {
 
   saveCustomer();
 });
+
+// ================================Login=====================================
+
+function getLoginDetails() {
+  $.ajax({
+    url: baseURL + "/login",
+    method: "GET",
+    // data: $("#register-form").serialize(),
+    success: function (resp) {
+      console.log(resp);
+      // var body = document.body;
+      // body.innerHTML = resp;
+      // console.log(body.innerHTML);
+      // if (resp.status === 201) {
+      //   console.log("success.........");
+      //   alert(resp.message);
+      //   clearForm();
+      //   window.location.href = recSystemUrl;
+      // } else {
+      //   console.log("error................");
+      //   alert(resp.message);
+      // }
+    },
+    error: function (ob, textStatus, error) {
+      console.log("server side error................");
+      console.log(ob);
+    },
+  });
+}
+
+$("#btn_login").click(function (e) {
+  console.log("clicked login.......");
+  window.location.href = "/movies/home";
+  // getLoginDetails();
+  // redirectToMoviesPage();
+});

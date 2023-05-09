@@ -209,3 +209,15 @@ $("#btn_recommend").click(function (e) {
     }
   }
 });
+
+$("#a_movie_hive").click(function (e) {
+  window.location.href = "http://127.0.0.1:5000/movies.html";
+});
+
+$("#a_profile").click(function (e) {
+  window.location.href = "http://127.0.0.1:5000/profile.html";
+});
+
+$("#a_signIn").click(function (e) {
+  window.location.href = "http://127.0.0.1:5000/";
+});
