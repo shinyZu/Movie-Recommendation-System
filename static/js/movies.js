@@ -1,6 +1,7 @@
 console.log("movies......");
 
 let baseURL = "http://localhost:5000";
+let server_path_for_movie_titles = "/movies";
 
 const movie_container = $("#card_main_container");
 const dropDown = $("#cmb_movies");
@@ -13,58 +14,45 @@ let cardsData = [];
 
 let img_size = "450x500";
 
-// Sample card data
-// const cardsData = [
-//   {
-//     imgSrc: "https://via.placeholder.com/" + img_size,
-//     title: "Card 1",
-//     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-//     caption: "Caption goes here",
-//   },
-//   {
-//     imgSrc: "https://via.placeholder.com/" + img_size,
-//     title: "Card 2",
-//     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-//     caption: "Caption goes here",
-//   },
-//   {
-//     imgSrc: "https://via.placeholder.com/" + img_size,
-//     title: "Card 3",
-//     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-//     caption: "Caption goes here",
-//   },
-//   {
-//     imgSrc: "https://via.placeholder.com/" + img_size,
-//     title: "Card 4",
-//     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-//     caption: "Caption goes here",
-//   },
-//   {
-//     imgSrc: "https://via.placeholder.com/" + img_size,
-//     title: "Card 5",
-//     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-//     caption: "Caption goes here",
-//   },
-//   {
-//     imgSrc: "https://via.placeholder.com/" + img_size,
-//     title: "Card 6",
-//     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-//     caption: "Caption goes here",
-//   },
-// ];
+let profile_tab = $("#0");
+let customer_id = 0;
 
-// ------
-
-// (function () {
-
-// })();
+// Get the Id of the logged customer
+getCustomerId();
 
 // Load drop down list
+// loadMovieTitlesForCmb();
 
-loadMovieTitlesForCmb();
-generateCards("Avatar");
+// Generate and append cards to the DOM
+// generateCards("Avatar");
 
-// Function to generate and append cards to the DOM
+function getCustomerId() {
+  console.log("movies - getting cutomer id............");
+  console.log(profile_tab.attr("id"));
+
+  $.ajax({
+    url: "/getId",
+    method: "GET",
+    success: function (resp) {
+      console.log(resp);
+
+      if (resp.status === 200) {
+        customer_id = resp.lastId;
+        console.log("success.........");
+        profile_tab.attr("id", customer_id);
+        console.log(profile_tab.attr("id"));
+      } else {
+        console.log("error................");
+        alert(resp.message);
+      }
+    },
+    error: function (ob, textStatus, error) {
+      console.log("server side error................");
+      console.log(ob);
+    },
+  });
+}
+
 function generateCards(movie_title) {
   const cardContainer = document.getElementById("card_main_container");
   getRecommendations(movie_title);
@@ -93,6 +81,7 @@ function generateCards(movie_title) {
 
     const card = document.createElement("div");
     card.classList.add("card");
+
     card.style.border = "none";
     card.style.borderBottomLeftRadius = "22px";
     card.style.borderBottomRightRadius = "22px";
@@ -103,10 +92,9 @@ function generateCards(movie_title) {
     img.alt = cardData.title;
     card.appendChild(img);
 
-    var initialHeight = img.clientHeight;
     card.addEventListener("mouseover", function () {
-      // card.style.border = "5px inset #16a085";
       card.style.border = "3px inset #1abc9c";
+      card.style.cursor = "pointer";
     });
     card.addEventListener("mouseout", function () {
       card.style.border = "none";
@@ -114,26 +102,34 @@ function generateCards(movie_title) {
 
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
+
     cardBody.style.backgroundColor = "#343a40";
 
     const cardTitle = document.createElement("h5");
     cardTitle.classList.add("card-title");
     cardTitle.textContent = cardData.title;
     cardBody.appendChild(cardTitle);
+
     cardBody.style.color = "#fff";
     cardBody.style.borderBottomLeftRadius = "20px";
     cardBody.style.borderBottomRightRadius = "20px";
-
     card.appendChild(cardBody);
 
     cardCol.appendChild(card);
     currentRow.appendChild(cardCol);
+
+    // img.style.border = "2px solid yellow";
+    // cardContainer.style.border = "2px solid red";
+    // currentRow.style.border = "2px solid blue";
+    // cardCol.style.border = "2px solid #fff";
+    // card.style.border = "2px solid yellow";
+    // cardBody.style.border = "2px solid pink";
   });
 }
 
 function getRecommendations(movie_selected) {
   $.ajax({
-    url: baseURL + "/recommendations/" + movie_selected,
+    url: "/recommendations/" + movie_selected,
     method: "GET",
     async: false,
     success: function (resp) {
@@ -172,7 +168,7 @@ function getRecommendations(movie_selected) {
 
 function loadMovieTitlesForCmb() {
   $.ajax({
-    url: baseURL + "/movies",
+    url: baseURL + server_path_for_movie_titles,
     method: "GET",
     // async: false,
     success: function (resp) {

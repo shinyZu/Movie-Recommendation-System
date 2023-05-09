@@ -2,35 +2,50 @@ const registerForm = $("#register-form");
 // let txtCustomerId = $("#cust_id");
 let txtCustomerName = $("#name");
 let txtCustomerEmail = $("#email");
+let txtCustomerPwd = $("#pwd");
 let txtCustomerAddress = $("#address");
 let txtCustomerContact = $("#contact");
 
 let baseURL = "http://localhost:5000";
-let recSystemUrl = "http://localhost:8501/";
 
 function clearForm() {
   // txtCustomerId.val("");
   txtCustomerName.val("");
   txtCustomerAddress.val("");
   txtCustomerEmail.val("");
+  txtCustomerPwd.val("");
   txtCustomerContact.val("");
 }
 
+// ================================Register/SignUp=================================
+
 function saveCustomer() {
   $.ajax({
-    url: baseURL + "/save",
+    url: "/save",
     method: "POST",
     data: $("#register-form").serialize(),
     success: function (resp) {
       console.log(resp);
       if (resp.status === 201) {
         console.log("success.........");
-        alert(resp.message);
+        // alert(resp.message);
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "",
+        //   showConfirmButton: true,
+        //   footer: `<a href="">${resp.message}</a>`,
+        // });
         clearForm();
-        window.location.href = recSystemUrl;
+        window.location.href = "/movies/home";
       } else {
         console.log("error................");
-        alert(resp.message);
+        // alert(resp.message);
+        Swal.fire({
+          icon: "error",
+          title: "Failed to sign up.",
+          showConfirmButton: false,
+          footer: `<a href="">${resp.message}</a>`,
+        });
       }
     },
     error: function (ob, textStatus, error) {
@@ -46,6 +61,7 @@ $("#btn_register").click(function (e) {
     name: txtCustomerName.val(),
     address: txtCustomerAddress.val(),
     email: txtCustomerEmail.val(),
+    pwd: txtCustomerPwd.val(),
     contact: txtCustomerContact.val(),
   };
   console.log(data);
@@ -54,27 +70,30 @@ $("#btn_register").click(function (e) {
   saveCustomer();
 });
 
-// ================================Login=====================================
+// ================================Login/SignIn=====================================
 
-function getLoginDetails() {
+function loginCustomer(custObj) {
   $.ajax({
-    url: baseURL + "/login",
-    method: "GET",
-    // data: $("#register-form").serialize(),
+    url: "/login",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(custObj),
     success: function (resp) {
       console.log(resp);
-      // var body = document.body;
-      // body.innerHTML = resp;
-      // console.log(body.innerHTML);
-      // if (resp.status === 201) {
-      //   console.log("success.........");
-      //   alert(resp.message);
-      //   clearForm();
-      //   window.location.href = recSystemUrl;
-      // } else {
-      //   console.log("error................");
-      //   alert(resp.message);
-      // }
+
+      if (resp.status === 200) {
+        console.log("success.........");
+        window.location.href = "/movies/home";
+      } else {
+        console.log("error................");
+        // alert(resp.message);
+        Swal.fire({
+          icon: "error",
+          title: "Failed to sign in.",
+          showConfirmButton: false,
+          footer: `<a href="">${resp.message}</a>`,
+        });
+      }
     },
     error: function (ob, textStatus, error) {
       console.log("server side error................");
@@ -85,7 +104,10 @@ function getLoginDetails() {
 
 $("#btn_login").click(function (e) {
   console.log("clicked login.......");
-  window.location.href = "/movies/home";
-  // getLoginDetails();
-  // redirectToMoviesPage();
+  const data = {
+    email: txtCustomerEmail.val(),
+    pwd: txtCustomerPwd.val(),
+  };
+  console.log(data);
+  loginCustomer(data);
 });

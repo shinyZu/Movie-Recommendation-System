@@ -33,16 +33,19 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/profile"
+            <a id="0" class="nav-link" href="/profile"
               >Profile<i class="fas fa-user"></i
             ></a>
           </li>
+          <li class="nav-item">
+            <a id="tab_logout" class="nav-link" href="#">Logout</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a id="a_signIn" class="nav-link" href="/index#signIn">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/index#signUp">Sign Up</a>
+          </li> -->
         </ul>
       </div>
     </nav>
@@ -51,30 +54,74 @@
         <h1>My Profile</h1>
       </div>
       <div class="container_3">
-        <form id="profile-form">
+        <form id="profile_form">
           <div id="container_4">
             <div class="field_container">
-              <label for="name">Name :</label>
-              <input type="text" id="name" name="name" required />
+              <label for="id">User ID :</label>
+              <input
+                type="text"
+                class="form-control"
+                id="id"
+                name="id"
+                disabled
+              />
             </div>
-            <br /><br />
+
+            <div class="field_container">
+              <label for="name">Name :</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+              />
+            </div>
+
             <div class="field_container">
               <label for="email">Email :</label>
-              <input type="email" id="email" name="email" required />
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+              />
             </div>
-            <br /><br />
+
+            <div class="field_container">
+              <label for="pwd">Password :</label>
+              <input
+                type="password"
+                class="form-control"
+                id="pwd"
+                name="pwd"
+                placeholder="Enter new password"
+              />
+            </div>
 
             <div class="field_container">
               <label for="address">Address :</label>
-              <input type="text" id="address" name="address" required />
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                name="address"
+                placeholder="Enter address"
+              />
             </div>
-            <br /><br />
 
             <div class="field_container">
               <label for="contact">Contact :</label>
-              <input type="tel" id="contact" name="contact" required />
+              <input
+                type="text"
+                class="form-control"
+                id="contact"
+                name="contact"
+                placeholder="Enter contact number"
+              />
             </div>
-            <br /><br />
+            <br />
 
             <!-- <div class="field_container">
               <label for="profile-pic">Profile Picture :</label>
@@ -93,6 +140,7 @@
             </div> -->
             <!-- <br /> -->
             <div id="btn_container">
+              <input id="btnCancel" type="button" value="Cancel" />
               <input id="btnSaveChanges" type="button" value="Save Changes" />
             </div>
           </div>
@@ -102,8 +150,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- <script src="assets/js/profile.js"></script> -->
     <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/server_index.js"></script>
     <script src="/static/js/profile.js"></script>
   </body>
 </html>
