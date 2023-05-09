@@ -82,8 +82,13 @@ def index():
 
 @app.route('/movies/home', methods=["GET"])
 @cross_origin()
-def getLoginDetails():
+def getMovieHomePage():
     return render_template('movies.html')
+
+@app.route('/profile', methods=["GET"])
+@cross_origin()
+def getProfilePage():
+    return render_template('profile.html')
 
 @app.route('/movies', methods=["GET"])
 @cross_origin()

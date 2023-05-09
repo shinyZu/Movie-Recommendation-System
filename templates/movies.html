@@ -28,7 +28,9 @@
   </head>
   <body>
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-      <a id="a_movie_hive" class="navbar-brand" href="#">MovieHive</a>
+      <a id="a_movie_hive" class="navbar-brand" href="/movies/home"
+        >MovieHive</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -49,7 +51,7 @@
             <a class="nav-link" href="#">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a id="a_profile" class="nav-link" href="#"
+            <a id="a_profile" class="nav-link" href="/profile"
               >Profile<i class="fas fa-user"></i
             ></a>
           </li>
@@ -73,7 +75,7 @@
           </h3>
         </div>
         <div class="dropdown" style="width: 60%" id="cmb_container_3">
-          <select class="form-select" aria-label="Movie items" id="cmb_movies">
+          <select class="minimal" aria-label="Movie items" id="cmb_movies">
             <!-- adds options dynamically -->
           </select>
           <button id="btn_recommend" type="button">Recommend</button>
@@ -99,6 +101,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- <script src="assets/js/movies.js"></script> -->
+    <script src="/static/js/navbar.js"></script>
     <script src="/static/js/movies.js"></script>
   </body>
 </html>

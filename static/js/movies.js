@@ -93,6 +93,9 @@ function generateCards(movie_title) {
 
     const card = document.createElement("div");
     card.classList.add("card");
+    card.style.border = "none";
+    card.style.borderBottomLeftRadius = "22px";
+    card.style.borderBottomRightRadius = "22px";
 
     const img = document.createElement("img");
     img.classList.add("card-img-top");
@@ -100,13 +103,26 @@ function generateCards(movie_title) {
     img.alt = cardData.title;
     card.appendChild(img);
 
+    var initialHeight = img.clientHeight;
+    card.addEventListener("mouseover", function () {
+      // card.style.border = "5px inset #16a085";
+      card.style.border = "3px inset #1abc9c";
+    });
+    card.addEventListener("mouseout", function () {
+      card.style.border = "none";
+    });
+
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
+    cardBody.style.backgroundColor = "#343a40";
 
     const cardTitle = document.createElement("h5");
     cardTitle.classList.add("card-title");
     cardTitle.textContent = cardData.title;
     cardBody.appendChild(cardTitle);
+    cardBody.style.color = "#fff";
+    cardBody.style.borderBottomLeftRadius = "20px";
+    cardBody.style.borderBottomRightRadius = "20px";
 
     card.appendChild(cardBody);
 
@@ -208,16 +224,4 @@ $("#btn_recommend").click(function (e) {
       generateCards(movie_selected);
     }
   }
-});
-
-$("#a_movie_hive").click(function (e) {
-  window.location.href = "http://127.0.0.1:5000/movies.html";
-});
-
-$("#a_profile").click(function (e) {
-  window.location.href = "http://127.0.0.1:5000/profile.html";
-});
-
-$("#a_signIn").click(function (e) {
-  window.location.href = "http://127.0.0.1:5000/";
 });
