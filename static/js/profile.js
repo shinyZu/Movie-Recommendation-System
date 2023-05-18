@@ -39,7 +39,7 @@
 // });
 
 console.log("====================================");
-console.log("Profile Loaded");
+console.log("profile js");
 console.log("====================================");
 
 let profile_tab = $("#0");
@@ -53,14 +53,25 @@ let txtCustContact = $("#contact");
 let customer_id = 0;
 
 // Get the Id of the logged customer
-getCustomerId();
+// getCustomerId();
 
-if (customer_id != 0) {
+// if (customer_id != 0) {
+//   console.log("1 loading......");
+//   var loggedUser = JSON.parse(sessionStorage.getItem("loggedUserId"));
+//   loadProfileData(loggedUser);
+//   console.log(profile_tab.attr("id"));
+// } else {
+//   console.log("2 loading......");
+// }
+
+(function () {
   console.log("1 loading......");
-  loadProfileData(customer_id);
-} else {
-  console.log("2 loading......");
-}
+  var loggedUser = JSON.parse(sessionStorage.getItem("loggedUserId"));
+  loadProfileData(loggedUser);
+
+  profile_tab.attr("id", loggedUser);
+  console.log(profile_tab.attr("id"));
+})();
 
 function getCustomerId() {
   console.log("profile - getting cutomer id............");
@@ -94,7 +105,8 @@ function loadProfileData(id) {
   console.log("loading profile..of user with id: " + id);
 
   $.ajax({
-    url: baseURL + "/search/" + id,
+    // url: baseURL + "/search/" + id,
+    url: "/search/" + id,
     method: "GET",
     success: function (resp) {
       console.log(resp.customer);
@@ -103,6 +115,7 @@ function loadProfileData(id) {
       if (resp.status === 200) {
         console.log("success.........");
 
+        txtCustId.val(id);
         txtCustName.val(customer.name);
         txtCustAddress.val(customer.address);
         txtCustEmail.val(customer.email);

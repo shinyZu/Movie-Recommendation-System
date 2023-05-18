@@ -1,3 +1,7 @@
+console.log("====================================");
+console.log("index js");
+console.log("====================================");
+
 const registerForm = $("#register-form");
 // let txtCustomerId = $("#cust_id");
 let txtCustomerName = $("#name");
@@ -6,7 +10,9 @@ let txtCustomerPwd = $("#pwd");
 let txtCustomerAddress = $("#address");
 let txtCustomerContact = $("#contact");
 
-let baseURL = "http://localhost:5000";
+let loggedUserId;
+
+// let baseURL = "http://localhost:5000";
 
 function clearForm() {
   // txtCustomerId.val("");
@@ -36,6 +42,10 @@ function saveCustomer() {
         //   footer: `<a href="">${resp.message}</a>`,
         // });
         clearForm();
+
+        // Storing data in session storage
+        sessionStorage.setItem("loggedUserId", resp.signedUpUser);
+
         window.location.href = "/movies/home";
       } else {
         console.log("error................");
@@ -44,7 +54,8 @@ function saveCustomer() {
           icon: "error",
           title: "Failed to sign up.",
           showConfirmButton: false,
-          footer: `<a href="">${resp.message}</a>`,
+          // footer: `<a href="">${resp.message}</a>`,
+          footer: resp.message,
         });
       }
     },
@@ -83,6 +94,12 @@ function loginCustomer(custObj) {
 
       if (resp.status === 200) {
         console.log("success.........");
+        // loggedUserId = resp.loggedUser;
+        // console.log("loggedUserId: " + loggedUserId);
+
+        // Storing data in session storage
+        sessionStorage.setItem("loggedUserId", resp.loggedUser);
+
         window.location.href = "/movies/home";
       } else {
         console.log("error................");
@@ -91,7 +108,8 @@ function loginCustomer(custObj) {
           icon: "error",
           title: "Failed to sign in.",
           showConfirmButton: false,
-          footer: `<a href="">${resp.message}</a>`,
+          // footer: `<a href="">${resp.message}</a>`,
+          footer: resp.message,
         });
       }
     },

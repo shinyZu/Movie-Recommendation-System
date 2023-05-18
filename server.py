@@ -39,17 +39,60 @@ cmb_movie_list = movies['title'].values
 
 # poster_url = ''
 def get_movie_poster(movie_id):
-    response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c&language=en-US'.format(movie_id))
+    # response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c&language=en-US'.format(movie_id))
+    response = requests.get('http://api.tmdb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c'.format(movie_id),timeout=0.5)
     data = response.json()
-    # print(data)
     poster_url = poster_path_base_url + data['poster_path']
-    # print(poster_url)
     return poster_url
+
+# def get_movie_poster(movie_id):
+#     try:
+#         url = 'http://api.tmdb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c'.format(movie_id)
+#         response = requests.get(url,timeout=1)
+
+#         if response.status_code == 200:
+#             data = response.json()
+#             poster_url = poster_path_base_url + data['poster_path']
+#             return poster_url
+#         else:
+#             print('Error:', response.status_code)
+#     except requests.exceptions.RequestException as e:
+#         print("Error making the request:", e)
+#         return None  # Or handle the error in an appropriate way
+
+def testAPI(id):
+    url = 'http://api.tmdb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c'.format(id)
+    response = requests.get(url,timeout=1)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        print('Error:', response.status_code)
+
+def getPosters(movie_id):
+    print("fetching posters.....................")
+    print(movie_id)
+    try:
+        print("---------1---------")
+        response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=c3ed154bde1307169e62092fa886bb9c&language=en-US'.format(movie_id))
+        response.raise_for_status()  # Raises an exception if the request was not successful
+
+        data = response.json()
+        poster_path = data.get('poster_path')
+        
+        if poster_path:
+            poster_url = poster_path_base_url + poster_path
+            return poster_url
+        else:
+            return None  # Or handle the case when poster_path is missing
+    except requests.exceptions.RequestException as e:
+        print("Error making the request:", e)
+        return None  # Or handle the error in an appropriate way
 
 def recommend_movies(movie_selected):
     movie_index = movies[movies['title'] == movie_selected].index[0]
     distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse = True, key=lambda x:x[1])[1:21]
+    movies_list = sorted(list(enumerate(distances)), reverse = True, key=lambda x:x[1])[1:7]
 
     recommended_movies_list = []
     recommended_movies_poster_list = []
@@ -109,6 +152,22 @@ def getMovieHomePage():
 def getProfilePage():
     return render_template('profile.html')
 
+# --------------------------------------------------------------------
+
+@app.route('/posters/<int:id>', methods=["GET"])
+# @cross_origin()
+def getPoster(id):
+    x = getPosters(id)
+    return jsonify({'status': 200, 'poster': x})
+
+@app.route('/test/<int:id>', methods=["GET"])
+@cross_origin()
+def test(id):
+    data = testAPI(id)
+    return jsonify({'status': 200, 'data': data})
+
+# --------------------------------------------------------------------
+
 @app.route('/movies', methods=["GET"])
 @cross_origin()
 def getMovieTitles(): 
@@ -157,9 +216,9 @@ def getAllUsers():
         customerDict = {
             'id': customer[0],
             'name': customer[1],
-            'address': customer[2],
-            'email': customer[3],
-            'contact': customer[4]
+            'address': customer[4],
+            'email': customer[2],
+            'contact': customer[5]
         }
         customerList.append(customerDict)
 
@@ -203,7 +262,7 @@ def login():
         print(customer)
 
         if customer:
-            return jsonify({'status' : 200, 'message' : "Valid credentials."})
+            return jsonify({'status' : 200, 'message' : "Valid credentials.", "loggedUser":customer[0]})
         else:
             return jsonify({'status': 404, 'message': "Please check your credentials and try again!"})
 
@@ -221,7 +280,16 @@ def saveUser():
         cursor.execute('INSERT INTO customers (name, address, email, password, contact) VALUES (%s, %s, %s, %s, %s)', (name, address, email, password, contact))
         conn.commit()
 
-        return jsonify({'status': 201, 'message': f'{name} saved successfully!'})
+        resp = getLastId();
+        data = json.loads(resp.data)
+        status = data['status']
+
+        print(data['lastId'])
+
+        if status == 404:
+            return jsonify({'status': 404, 'message': "Couldn't get customer id"})
+
+        return jsonify({'status': 201, 'message': f'{name} saved successfully!', "signedUpUser" : data['lastId']})
 
     return jsonify({'status': 404, 'message': "Sign Up failed."})
 

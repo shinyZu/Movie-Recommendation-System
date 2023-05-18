@@ -1,7 +1,9 @@
-console.log("movies......");
+console.log("====================================");
+console.log("movie js");
+console.log("====================================");
 
-let baseURL = "http://localhost:5000";
-let server_path_for_movie_titles = "/movies";
+// let baseURL = "http://localhost:5000";
+// let server_path_for_movie_titles = "/movies";
 
 const movie_container = $("#card_main_container");
 const dropDown = $("#cmb_movies");
@@ -18,13 +20,24 @@ let profile_tab = $("#0");
 let customer_id = 0;
 
 // Get the Id of the logged customer
-getCustomerId();
+// getCustomerId();
+
+(function () {
+  console.log("profle tab id");
+  console.log(profile_tab.attr("id"));
+
+  var loggedUserId = JSON.parse(sessionStorage.getItem("loggedUserId"));
+  console.log("loggedUserId: " + loggedUserId);
+
+  profile_tab.attr("id", loggedUserId);
+  console.log(profile_tab.attr("id"));
+})();
 
 // Load drop down list
-// loadMovieTitlesForCmb();
+loadMovieTitlesForCmb();
 
 // Generate and append cards to the DOM
-// generateCards("Avatar");
+generateCards("Avatar");
 
 function getCustomerId() {
   console.log("movies - getting cutomer id............");
@@ -168,7 +181,8 @@ function getRecommendations(movie_selected) {
 
 function loadMovieTitlesForCmb() {
   $.ajax({
-    url: baseURL + server_path_for_movie_titles,
+    // url: baseURL + server_path_for_movie_titles,
+    url: "/movies",
     method: "GET",
     // async: false,
     success: function (resp) {
