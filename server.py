@@ -92,7 +92,7 @@ def getPosters(movie_id):
 def recommend_movies(movie_selected):
     movie_index = movies[movies['title'] == movie_selected].index[0]
     distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)), reverse = True, key=lambda x:x[1])[1:7]
+    movies_list = sorted(list(enumerate(distances)), reverse = True, key=lambda x:x[1])[1:22]
 
     recommended_movies_list = []
     recommended_movies_poster_list = []
